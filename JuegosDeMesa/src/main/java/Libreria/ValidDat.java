@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Libreria;
 
 import Excepciones.ExcepcionMia;
@@ -12,7 +9,7 @@ import java.util.Scanner;
  * Clase contenedora de métodos que validan la introducción de datos por teclado
  * controlando las posibles excepciones
  *
- * @author eduardolucasmunozdelucas
+ * @author edulumulu
  */
 public class ValidDat {
 
