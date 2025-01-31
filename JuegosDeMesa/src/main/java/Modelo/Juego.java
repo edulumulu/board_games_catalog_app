@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Modelo;
 
 import static Libreria.ValidDat.textoNoVacio;
@@ -13,7 +10,7 @@ import java.util.Objects;
 
 /**
  *
- * @author eduardolucasmunozdelucas
+ * @author edulumulu
  */
 public class Juego {
     private int id;
@@ -297,14 +294,6 @@ public class Juego {
         this.ListaExpansiones = ListaExpansiones;
     }
     
-//    public Juego(ResultSet resultSet) throws SQLException {
-//    try {
-//        this.nombre = resultSet.getString("nombre");
-//        // Aquí asigna los otros atributos de acuerdo a las columnas del ResultSet
-//    } catch (SQLException e) {
-//        throw new SQLException("Error al crear un objeto Juego a partir de ResultSet", e);
-//    }
-//}
     
     public Juego(ResultSet resultSet) throws SQLException {
         
@@ -323,7 +312,7 @@ public class Juego {
         this.expansion = resultSet.getBoolean("expansion");
         this.expansionDe = resultSet.getString("expansionDe");
         this.descripcion = resultSet.getString("descripcion");
-//         Asumimos que ListaExpansiones es una columna de tipo texto con valores separados por comas
+        //       Asumimos que ListaExpansiones es una columna de tipo texto con valores separados por comas
         String listaExpansionesStr = resultSet.getString("ListaExpansiones");
         if (listaExpansionesStr != null && !listaExpansionesStr.isEmpty()) {
             this.ListaExpansiones = new ArrayList<>(List.of(listaExpansionesStr.split(",")));
@@ -333,7 +322,6 @@ public class Juego {
     }
 
 
-    
     @Override
     public int hashCode() {
         int hash = 5;
