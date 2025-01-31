@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package ControladorDAO;
 
 import Excepciones.ExcepcionMia;
@@ -18,9 +15,8 @@ import javax.print.attribute.standard.NumberOfInterveningJobs;
 
 public class GestionBBDD implements InterfazDAO {
 
-    //Variables que almacenan en forma de string los datos para realizar la conexión con el servidor 
     //------ ATENCIÓN YO HE TRABAJADO CON EL PUERTO 3308, CAMBIAR SI UTILIZAS EL POR DEFECTO MYSQL (3306) --------
-//    private final String JDBC_URL = "jdbc:mysql://localhost:3306";
+    //private final String JDBC_URL = "jdbc:mysql://localhost:3306";
     private final String JDBC_URL = "jdbc:mysql://localhost:3308";
     private final String JDBC_COMMU_OPT = "?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private final String JDBC_USER = "root";
@@ -36,8 +32,8 @@ public class GestionBBDD implements InterfazDAO {
     private final String SQL_SELECT = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE (nombre = ";
     private final String SQL_SELECT_LISTAEX = "SELECT listaExpansiones FROM " + JDBC_DDBB_TABLE + " WHERE (nombre = ";
     private final String SQL_SELECT_LISTTEMATICA = "SELECT tematica FROM " + JDBC_DDBB_TABLE + " ORDER BY tematica;";
-//    private final String SQL_SELECT_PORTEMATICA = "SELECT nombre FROM " + JDBC_DDBB_TABLE + " WHERE (tematica =";
-//    private final String SQL_SELECT_GENERAL = "SELECT nombre FROM " + JDBC_DDBB_TABLE + " WHERE (";
+    //    private final String SQL_SELECT_PORTEMATICA = "SELECT nombre FROM " + JDBC_DDBB_TABLE + " WHERE (tematica =";
+    //    private final String SQL_SELECT_GENERAL = "SELECT nombre FROM " + JDBC_DDBB_TABLE + " WHERE (";
     private final String SQL_SELECT_NOMBRE = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE nombre = ? ORDER BY nombre";
     private final String SQL_SELECT_DIFICULTAD = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE dificultad = ? ORDER BY nombre";
     private final String SQL_SELECT_NUMJUG = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE numJugMax >= ? AND numJugMin <= ? ORDER BY nombre";
@@ -61,16 +57,16 @@ public class GestionBBDD implements InterfazDAO {
     private final String SQL_SELECT_TotalDueno = "SELECT count(*) as total FROM " + JDBC_DDBB_TABLE + " WHERE dueno = ";
     private final String SQL_SELECT_JuegosporDueno = "SELECT nombre FROM " + JDBC_DDBB_TABLE + " WHERE dueno = ?";
 
-// numJugMin, numJugMax, duracion, tematica, dificultad, estrategia, suerte, interaccion
-//    private final String SQL_INSERT = "INSERT INTO " + JDBC_DDBB_TABLE + " (nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+    //    private final String SQL_INSERT = "INSERT INTO " + JDBC_DDBB_TABLE + " (nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
     private final String SQL_INSERT_2 = "INSERT INTO " + JDBC_DDBB_TABLE + " (nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
     private final String SQL_UPDATE_EXPANSIONES = "UPDATE " + JDBC_DDBB_TABLE + " SET listaExpansiones = ?  WHERE (nombre = ?);";
 
     private final String SQL_UPDATE = "UPDATE " + JDBC_DDBB_TABLE + " SET nombre = ?, disenador = ?, año = ?, numJugMax = ?, numJugMin = ?, duracion = ?, tematica = ?, dificultad = ?, estrategia = ?, suerte = ?, interaccion = ?, dueno = ?, expansion = ?, expansionDe = ?, descripcion = ? WHERE (id = ?);";
-//    private final String SQL_UPDATE_NOMBRE = "UPDATE " + JDBC_DDBB_TABLE + " SET nombre = ?  WHERE (id = ?);";
-//    private final String SQL_UPDATE_CURSO = "UPDATE " + JDBC_DDBB_TABLE + " SET curso = ?  WHERE (id = ?);";
-//    private final String SQL_UPDATE_MEDIA = "UPDATE " + JDBC_DDBB_TABLE + " SET media = ?  WHERE (id = ?);";
+    //    private final String SQL_UPDATE_NOMBRE = "UPDATE " + JDBC_DDBB_TABLE + " SET nombre = ?  WHERE (id = ?);";
+    //    private final String SQL_UPDATE_CURSO = "UPDATE " + JDBC_DDBB_TABLE + " SET curso = ?  WHERE (id = ?);";
+    //    private final String SQL_UPDATE_MEDIA = "UPDATE " + JDBC_DDBB_TABLE + " SET media = ?  WHERE (id = ?);";
     private final String SQL_DELETE = "DELETE FROM " + JDBC_DDBB_TABLE + " WHERE (nombre = ";
 
     @Override
@@ -122,15 +118,9 @@ public class GestionBBDD implements InterfazDAO {
             conexion = conectarse();
             st = conexion.createStatement();
             rs = st.executeQuery(query);
+            
             while (rs.next()) {
-
-//                String nombre = rs.getString("dueno");
                 total = rs.getInt("total");
-//                boolean expansion = rs.getBoolean("expansion");
-//                int edad = rs.getInt("edad");
-//                String curso = rs.getString("curso");
-//                double media = rs.getDouble("media");
-
             }
         } catch (SQLException ex) {
             System.out.println("No se puede leer de la base de datos ");
@@ -160,15 +150,9 @@ public class GestionBBDD implements InterfazDAO {
             conexion = conectarse();
             st = conexion.createStatement();
             rs = st.executeQuery(SQL_SELECT_Total);
+            
             while (rs.next()) {
-
-//                String nombre = rs.getString("dueno");
                 total = rs.getInt("total");
-//                boolean expansion = rs.getBoolean("expansion");
-//                int edad = rs.getInt("edad");
-//                String curso = rs.getString("curso");
-//                double media = rs.getDouble("media");
-
             }
         } catch (SQLException ex) {
             System.out.println("No se puede leer de la base de datos ");
@@ -202,10 +186,6 @@ public class GestionBBDD implements InterfazDAO {
 
                 String nombre = rs.getString("nombre");
                 boolean expansion = rs.getBoolean("expansion");
-//                int edad = rs.getInt("edad");
-//                String curso = rs.getString("curso");
-//                double media = rs.getDouble("media");
-
                 juegos.add(new Juego(nombre, expansion));
             }
         } catch (SQLException ex) {
@@ -267,13 +247,11 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                 if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
             }
 
@@ -300,8 +278,6 @@ public class GestionBBDD implements InterfazDAO {
         }
 
         return juegos;
-
-//SQL_SELECT_NOMBRE_LETRA 'a%';
     }
 
     @Override
@@ -402,7 +378,6 @@ public class GestionBBDD implements InterfazDAO {
     public Juego leerJuegosPorNombre(String n) throws ExcepcionMia {
 
         Juego juego = null;
-//        ArrayList<Juego> juegos = new ArrayList<>();
         Connection conexion = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -446,10 +421,8 @@ public class GestionBBDD implements InterfazDAO {
                     juego = new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion);
                 } else if (expansion != true && lista.isEmpty()) {
                     juego = new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion);
-
                 }
 
-//                juego = new Juego(nombre, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, expansion);
             }
             if (juego == null) {
                 System.out.println("No se encontró ningún juego con esta temática: " + n);
@@ -487,10 +460,7 @@ public class GestionBBDD implements InterfazDAO {
 
         try {
             conexion = conectarse();
-//            String query = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE tematica = ?";
-
             ps = conexion.prepareStatement(SQL_SELECT_duracionyNumJug);
-
             ps.setInt(1, min);
             ps.setInt(2, max);
             ps.setInt(3, numJug);
@@ -527,13 +497,11 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
             }
 
@@ -571,10 +539,7 @@ public class GestionBBDD implements InterfazDAO {
 
         try {
             conexion = conectarse();
-//            String query = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE tematica = ?";
-
             ps = conexion.prepareStatement(SQL_SELECT_duracionyDificultad);
-
             ps.setInt(1, min);
             ps.setInt(2, max);
             ps.setInt(3, dif);
@@ -607,13 +572,11 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
             }
 
@@ -653,10 +616,7 @@ public class GestionBBDD implements InterfazDAO {
 
         try {
             conexion = conectarse();
-//            String query = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE tematica = ?";
-
             ps = conexion.prepareStatement(SQL_SELECT_duracion);
-
             ps.setInt(1, min);
             ps.setInt(2, max);
             rs = ps.executeQuery();
@@ -688,7 +648,6 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
@@ -734,8 +693,6 @@ public class GestionBBDD implements InterfazDAO {
 
         try {
             conexion = conectarse();
-//            String query = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE tematica = ?";
-
             ps = conexion.prepareStatement(SQL_SELECT_los4);
             ps.setString(1, n);
             ps.setInt(2, min);
@@ -776,13 +733,11 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
             }
 
@@ -822,8 +777,6 @@ public class GestionBBDD implements InterfazDAO {
 
         try {
             conexion = conectarse();
-//            String query = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE tematica = ?";
-
             ps = conexion.prepareStatement(SQL_SELECT_TEMATICAYDuracionyNumJug);
             ps.setString(1, n);
             ps.setInt(2, min);
@@ -860,13 +813,11 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
             }
 
@@ -906,8 +857,6 @@ public class GestionBBDD implements InterfazDAO {
 
         try {
             conexion = conectarse();
-//            String query = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE tematica = ?";
-
             ps = conexion.prepareStatement(SQL_SELECT_TEMATICAYDuracionydificultad);
             ps.setString(1, n);
             ps.setInt(2, min);
@@ -943,13 +892,11 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
             }
 
@@ -989,8 +936,6 @@ public class GestionBBDD implements InterfazDAO {
 
         try {
             conexion = conectarse();
-//            String query = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE tematica = ?";
-
             ps = conexion.prepareStatement(SQL_SELECT_duracionyNumJugydif);
             ps.setInt(1, min);
             ps.setInt(2, max);
@@ -998,9 +943,6 @@ public class GestionBBDD implements InterfazDAO {
             ps.setInt(4, numJug);
             ps.setInt(5, dif);
 
-//             System.out.println("Ejecutando consulta: " + SQL_SELECT_TEMATICAYDuracion);
-//        System.out.println("Parámetros: tematica=" + n + ", duracionMin=" + min + ", duracionMax=" + max);
-//
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -1030,13 +972,11 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
             }
 
@@ -1075,8 +1015,6 @@ public class GestionBBDD implements InterfazDAO {
 
         try {
             conexion = conectarse();
-//            String query = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE tematica = ?";
-
             ps = conexion.prepareStatement(SQL_SELECT_TEMATICAYDuracion);
             ps.setString(1, n);
             ps.setInt(2, min);
@@ -1114,13 +1052,11 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
             }
 
@@ -1160,8 +1096,6 @@ public class GestionBBDD implements InterfazDAO {
 
         try {
             conexion = conectarse();
-//            String query = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE tematica = ?";
-
             ps = conexion.prepareStatement(SQL_SELECT_TEMATICA2);
             ps.setString(1, n);
             rs = ps.executeQuery();
@@ -1193,16 +1127,12 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                 if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
-                
-                
             }
 
             if (juegos.isEmpty()) {
@@ -1276,13 +1206,11 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
             }
             if (juegos.isEmpty()) {
@@ -1356,13 +1284,11 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
             }
             if (juegos.isEmpty()) {
@@ -1438,13 +1364,11 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
             }
             if (juegos.isEmpty()) {
@@ -1516,7 +1440,6 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
@@ -1555,7 +1478,6 @@ public class GestionBBDD implements InterfazDAO {
     @Override
     public ArrayList<Juego> buscarporDificultad(int n) throws ExcepcionMia {
 
-//        Juego juego = null;
         ArrayList<Juego> juegos = new ArrayList<>();
         Connection conexion = null;
         PreparedStatement ps = null;
@@ -1595,13 +1517,11 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
             }
             if (juegos.isEmpty()) {
@@ -1634,7 +1554,6 @@ public class GestionBBDD implements InterfazDAO {
     @Override
     public ArrayList<Juego> buscarporTematicaYDificultad(String t, int n) throws ExcepcionMia {
 
-//        Juego juego = null;
         ArrayList<Juego> juegos = new ArrayList<>();
         Connection conexion = null;
         PreparedStatement ps = null;
@@ -1675,7 +1594,6 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
@@ -1711,7 +1629,7 @@ public class GestionBBDD implements InterfazDAO {
     }
 
     /**
-     * Actualiza solamente el nombre del alumno
+     * Actualiza solamente el nombre del juego
      *
      * @param a
      * @return --> integer
@@ -1755,8 +1673,6 @@ public class GestionBBDD implements InterfazDAO {
 
         try {
             conexion = conectarse();
-//            String query = "SELECT * FROM " + JDBC_DDBB_TABLE + " WHERE tematica = ?";
-
             ps = conexion.prepareStatement(SQL_SELECT_ALL);
 
             rs = ps.executeQuery();
@@ -1788,13 +1704,11 @@ public class GestionBBDD implements InterfazDAO {
                 }
 
                  if (expansion == true) {
-//                    juegos.add(new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, descripcion));
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, expansionDe, new ArrayList<>(), descripcion));
                 } else if (expansion != true && !lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, lista, descripcion));
                 } else if (expansion != true && lista.isEmpty()) {
                     juegos.add(new Juego(id, nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, dueno, expansion, null, new ArrayList<>(), descripcion));
-
                 }
             }
 
@@ -1836,10 +1750,6 @@ public class GestionBBDD implements InterfazDAO {
             rs = st.executeQuery(SQL_SELECT_LISTTEMATICA);
             while (rs.next()) {
                 String tematica = rs.getString("tematica");
-//                boolean expansion = rs.getBoolean("expansion");
-//                int edad = rs.getInt("edad");
-//                String curso = rs.getString("curso");
-//                double media = rs.getDouble("media");
                 if (!tematicas.contains(tematica)) {
                     tematicas.add(tematica);
                 }
@@ -1898,7 +1808,6 @@ public class GestionBBDD implements InterfazDAO {
                     String[] items = listaStringLimpia.split(", ");
                     lista = new ArrayList<>(Arrays.asList(items));
 
-//                    juego = new Juego(nombre, disenador, año, numJugMax, numJugMin, duracion, tematica, dificultad, estrategia, suerte, interaccion, disenador, expansion, expansionDe, lista);
                 }
 
                 if (expansion == true) {
@@ -1956,7 +1865,7 @@ public class GestionBBDD implements InterfazDAO {
     }
 
     /**
-     * Inserta en la base de datos el objeto alumno introducido como parámetro
+     * Inserta en la base de datos el objeto juego introducido como parámetro
      *
      * @param a
      * @return ---> Entero
@@ -1987,7 +1896,6 @@ public class GestionBBDD implements InterfazDAO {
             instruccion.setString(12, j.getDueño());
             instruccion.setBoolean(13, j.isExpansion());
             instruccion.setString(14, j.getExpansionDe());
-//            instruccion.setString(14, j.getListaExpansiones().toString());
             instruccion.setString(15, j.getDescripcion());
 
             registrados = instruccion.executeUpdate();
